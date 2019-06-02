@@ -5,5 +5,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("RPC")
 public interface RpcService extends RemoteService{
-	String normal();
+	String normal(String datePattern);
 }

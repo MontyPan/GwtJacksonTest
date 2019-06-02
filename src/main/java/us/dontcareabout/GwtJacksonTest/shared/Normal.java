@@ -1,11 +1,14 @@
 package us.dontcareabout.GwtJacksonTest.shared;
 
+import java.util.Date;
+
 public class Normal {
 	public int intPublic;
 
 	private String string;
 	private Double doubleD;
 	private long longV;
+	private Date date;
 
 	public String getString() {
 		return string;
@@ -24,5 +27,11 @@ public class Normal {
 	}
 	public void setLongV(long longV) {
 		this.longV = longV;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
