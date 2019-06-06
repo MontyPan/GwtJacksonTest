@@ -1,5 +1,6 @@
 package us.dontcareabout.GwtJacksonTest.server;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import com.google.gson.Gson;
@@ -21,7 +22,12 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService {
 		result.setString("String");
 		result.intPublic = Integer.MIN_VALUE;
 		result.setDate(new Date());
+
+		ArrayList<String> list = new ArrayList<>();
+		list.add("a1");
+		list.add("a2");
+		result.setList(list);
+
 		return gson.toJson(result);
 	}
-
 }

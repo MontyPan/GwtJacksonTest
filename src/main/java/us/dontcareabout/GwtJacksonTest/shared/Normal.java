@@ -1,5 +1,6 @@
 package us.dontcareabout.GwtJacksonTest.shared;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Normal {
@@ -9,6 +10,7 @@ public class Normal {
 	private Double doubleD;
 	private long longV;
 	private Date date;
+	private ArrayList<String> list;
 
 	public String getString() {
 		return string;
@@ -33,5 +35,11 @@ public class Normal {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public ArrayList<String> getList() {
+		return list;
+	}
+	public void setList(ArrayList<String> list) {
+		this.list = list;
 	}
 }
