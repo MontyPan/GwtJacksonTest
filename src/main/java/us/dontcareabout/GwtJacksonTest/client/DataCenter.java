@@ -5,6 +5,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
+import us.dontcareabout.GwtJacksonTest.shared.Fail;
 import us.dontcareabout.GwtJacksonTest.shared.Normal;
 import us.dontcareabout.gwt.client.Console;
 
@@ -25,6 +26,25 @@ public class DataCenter {
 
 			@Override
 			public void onFailure(Throwable caught) {}
+		});
+	}
+
+	interface FailMapper extends ObjectMapper<Fail>{}
+	static FailMapper failMapper = GWT.create(FailMapper.class);
+
+	public static void fail() {
+		rpc.fail(new AsyncCallback<String>() {
+			@Override
+			public void onSuccess(String result) {
+				Console.log("=-");
+				Console.inspect(failMapper.read(result));
+			}
+
+			@Override
+			public void onFailure(Throwable caught) {
+				// TODO Auto-generated method stub
+
+			}
 		});
 	}
 }

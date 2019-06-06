@@ -9,6 +9,7 @@ import us.dontcareabout.gxt.client.draw.component.TextButton;
 
 public 	class MainView extends LayerContainer {
 	TextButton normal = gen("標準 pojo");
+	TextButton fail = gen("失敗-1");
 
 	public MainView() {
 		normal.addSpriteSelectionHandler(new SpriteSelectionHandler() {
@@ -18,6 +19,14 @@ public 	class MainView extends LayerContainer {
 			}
 		});
 		addLayer(normal);
+
+		fail.addSpriteSelectionHandler(new SpriteSelectionHandler() {
+			@Override
+			public void onSpriteSelect(SpriteSelectionEvent event) {
+				DataCenter.fail();
+			}
+		});
+		addLayer(fail);
 	}
 
 	@Override
@@ -25,6 +34,11 @@ public 	class MainView extends LayerContainer {
 		normal.setLX(10);
 		normal.setLY(10);
 		normal.resize(200, 50);
+
+		fail.setLX(10);
+		fail.setLY(70);
+		fail.resize(200, 50);
+
 		super.onResize(width, height);
 	}
 

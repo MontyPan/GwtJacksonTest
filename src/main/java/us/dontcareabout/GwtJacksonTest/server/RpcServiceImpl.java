@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 import us.dontcareabout.GwtJacksonTest.client.RpcService;
+import us.dontcareabout.GwtJacksonTest.shared.Fail;
 import us.dontcareabout.GwtJacksonTest.shared.Normal;
 
 public class RpcServiceImpl extends RemoteServiceServlet implements RpcService {
@@ -29,5 +30,15 @@ public class RpcServiceImpl extends RemoteServiceServlet implements RpcService {
 		result.setList(list);
 
 		return gson.toJson(result);
+	}
+
+	@Override
+	public String fail() {
+		Fail result = new Fail();
+		ArrayList<String> list = new ArrayList<>();
+		list.add("a1");
+		list.add("a2");
+		result.setList(list);
+		return new Gson().toJson(result);
 	}
 }

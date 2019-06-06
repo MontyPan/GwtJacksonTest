@@ -3,6 +3,10 @@ Client Side
 
 gwt-jackson 把日期轉 json 的時候會轉成 getTime() 的整數而不是常見日期格式... ＝＝"
 
+VO 的 field 如果不是 public，就一定要有 public setter。
+getter 可有可無（沒有 getter 是能幹麼 ＝＝"），
+getter 的 return type 必須是 setter 參數 type 或是其 child class。
+
 
 Server Side
 ===========
