@@ -1,9 +1,21 @@
 package us.dontcareabout.GwtJacksonTest.shared;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Objects;
 
 public class Normal {
+	public static final Normal sample = new Normal();
+	static {
+		sample.intPublic = 5487;
+		sample.setDate(new Date(1643384631785L));
+		sample.setDoubleD(5566.7788);
+		sample.setLongV(2147483649L);
+		sample.setString("Normal String");
+		sample.setList(new ArrayList<>(Arrays.asList("1", "2", "3")));
+	}
+
 	public int intPublic;
 
 	private String string;
@@ -41,5 +53,21 @@ public class Normal {
 	}
 	public void setList(ArrayList<String> list) {
 		this.list = list;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(date, doubleD, intPublic, list, longV, string);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if(this == obj) {
+			return true;
+		}
+		if(!(obj instanceof Normal)) {
+			return false;
+		}
+		Normal other = (Normal)obj;
+		return Objects.equals(date, other.date) && Objects.equals(doubleD, other.doubleD) && intPublic == other.intPublic && Objects.equals(list, other.list)
+			&& longV == other.longV && Objects.equals(string, other.string);
 	}
 }
