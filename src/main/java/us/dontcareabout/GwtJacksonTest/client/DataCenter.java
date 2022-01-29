@@ -21,4 +21,12 @@ public class DataCenter {
 			(req, resp) -> Console.log("receiveNormal() : " + resp.getText())
 		);
 	}
+
+	public static void sendNormal() {
+		new RestBuilder("api/sendNormal").get().request(
+			(req, resp) -> Console.log(
+				"sendNormal() : " + (Normal.sample.equals(mapper.read(resp.getText())))
+			)
+		);
+	}
 }
