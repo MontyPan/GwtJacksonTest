@@ -54,23 +54,22 @@ public class RequestBuilder2 {
 	////////////////////////////////
 
 	public RequestBuilder2 get() {
-		method = RequestBuilder.GET;
-		return this;
+		return setMethod(RequestBuilder.GET);
 	}
 	public RequestBuilder2 post() {
-		method = RequestBuilder.POST;
-		return this;
+		return setMethod(RequestBuilder.POST);
 	}
 	public RequestBuilder2 put() {
-		method = RequestBuilder.PUT;
-		return this;
+		return setMethod(RequestBuilder.PUT);
 	}
 	public RequestBuilder2 delete() {
-		method = RequestBuilder.DELETE;
-		return this;
+		return setMethod(RequestBuilder.DELETE);
 	}
 	public RequestBuilder2 head() {
-		method = RequestBuilder.HEAD;
+		return setMethod(RequestBuilder.HEAD);
+	}
+	public RequestBuilder2 setMethod(Method method) {
+		this.method = method;
 		return this;
 	}
 	public Method getMethod() {
