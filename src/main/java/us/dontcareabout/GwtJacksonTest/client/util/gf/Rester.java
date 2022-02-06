@@ -1,6 +1,7 @@
 package us.dontcareabout.GwtJacksonTest.client.util.gf;
 
 import com.github.nmorel.gwtjackson.client.ObjectMapper;
+import com.google.gwt.core.client.JsonUtils;
 import com.google.gwt.http.client.RequestBuilder;
 import com.google.gwt.http.client.RequestBuilder.Method;
 
@@ -14,6 +15,19 @@ public class Rester<T extends HasId<ID>, ID> {
 	public Rester(String name, ObjectMapper<T> mapper) {
 		this.name = name;
 		this.mapper = mapper;
+	}
+
+	public void getEntry(T data, Callback<T> callback) {
+		getEntry(data.getId(), callback);
+	}
+
+	public void getEntry(ID id, Callback<T> callback) {
+		new RestBuilder(name + "/" + id.toString()).get().setErrorCallback(callback).request(
+			(req, resp) -> {
+				HalEntry entry = JsonUtils.safeEval(resp.getText());
+				callback.onSuccess(mapper.read(entry.toPojoJson()));
+			}
+		);
 	}
 
 	public void delete(T data, Callback<Integer> callback) {
