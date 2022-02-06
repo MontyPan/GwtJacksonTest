@@ -23,4 +23,17 @@ public class JacksonUtil {
 
 		return result;
 	}
+
+	/**
+	 * 這是為了不多製造一個 ObjectMapper<List<T>> 而搞出來的東西。
+	 */
+	public static <T> String write(List<T> data, ObjectMapper<T> mapper) {
+		StringBuilder result = new StringBuilder();
+
+		for (T t : data) {
+			result.append(mapper.write(t) + ",");
+		}
+
+		return "[" + result.substring(0, result.length() - 1) + "]";
+	}
 }
