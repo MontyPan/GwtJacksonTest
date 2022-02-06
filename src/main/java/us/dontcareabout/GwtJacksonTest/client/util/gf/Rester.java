@@ -8,8 +8,8 @@ import us.dontcareabout.GwtJacksonTest.shared.gf.HasId;
 import us.dontcareabout.gwt.client.data.Callback;
 
 public class Rester<T extends HasId<ID>, ID> {
-	private final String name;
-	private final ObjectMapper<T> mapper;
+	public final String name;
+	public final ObjectMapper<T> mapper;
 
 	public Rester(String name, ObjectMapper<T> mapper) {
 		this.name = name;
