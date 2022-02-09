@@ -17,6 +17,22 @@ public class Rester<T extends HasId<ID>, ID> {
 		this.mapper = mapper;
 	}
 
+	public void getPageResult(Callback<PageResult<T>> callback) {
+		getPageResult(new PageParameter(), callback);
+	}
+
+	public void getPageResult(PageParameter param, Callback<PageResult<T>> callback) {
+		new RestBuilder(name + param.toString()).get().setErrorCallback(callback).request(
+			(req, resp) -> {
+				HalCollection hc = JsonUtils.safeEval(resp.getText());
+				PageResult<T> result = new PageResult<>(
+					hc.getPage(), JacksonUtil.read(hc.toPojoJson(), mapper)
+				);
+				callback.onSuccess(result);
+			}
+		);
+	}
+
 	public void getEntry(T data, Callback<T> callback) {
 		getEntry(data.getId(), callback);
 	}
